@@ -1,5 +1,6 @@
 package redesocial;
 
+import action.Comunicador;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,9 +8,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 public class Servidor {
     private static final int PORTA = 1234;
+
+    private Comunicador comunicador = new Comunicador();
     
     public void iniciar() throws IOException {
         ServerSocket socket = new ServerSocket(PORTA);
@@ -32,7 +36,8 @@ public class Servidor {
         // clientes podem ser atendindos concorrentemente
         // Você pode criar uma thread para atender cada cliente
         String comando = readLine(cliente.getInputStream());
-        writeLine(cliente.getOutputStream(), "comando recebido: " + comando);
+       // writeLine(cliente.getOutputStream(), "comando recebido: " + comando);
+        retornoMensagem(cliente.getOutputStream(), comunicador.interpretaMensagem(comando));
         cliente.close();
     }
     
@@ -45,4 +50,13 @@ public class Servidor {
         out.write(linhas.getBytes());
         out.write('\n');
     }
+
+    private void retornoMensagem(OutputStream saida, List<String> retorno) throws IOException{
+        for (int i = 0; i < retorno.size(); i++) {
+            writeLine(saida, retorno.get(i));
+        }
+
+        
+    }
+
 }

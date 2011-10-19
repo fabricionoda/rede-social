@@ -2,7 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -13,8 +16,8 @@ package models;
 public class Usuario {
 
     private String nome;
+    private List<String> listaMensagem = new ArrayList<String>();
     
-
     public String getNome(){
         return nome;
     }

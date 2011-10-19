@@ -9,6 +9,6 @@ package model;
  *
  * @author fabricio
  */
-public class Mensagens {
+public class Mensagem {
 
 }

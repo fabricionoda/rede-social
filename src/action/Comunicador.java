@@ -14,7 +14,7 @@ import java.util.List;
 public class Comunicador {
 
     public List<String> interpretaMensagem (String mensagem){
-
+	
         return null;
     }
 
